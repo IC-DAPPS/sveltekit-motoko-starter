@@ -1,45 +1,26 @@
 <script lang="ts">
-	import { getActor } from '$lib/actor';
-	import { AnonymousIdentity } from '@dfinity/agent';
-	import { createActor } from '../../../declarations/backend';
+	import Auth from '$lib/components/Auth.svelte';
+	import { authStore } from '$lib/stores/auth.store';
 
 	let input = '';
 	let disabled = false;
 	let greeting = '';
 
-	const handleOnSubmit = async () => {
-		disabled = true;
-
-		try {
-			// Canister IDs are automatically expanded to .env config - see vite.config.ts
-			const canisterId = import.meta.env.VITE_BACKEND_CANISTER_ID;
-			console.log(canisterId);
-
-			// We pass the host instead of using a proxy to support NodeJS >= v17 (ViteJS issue: https://github.com/vitejs/vite/issues/4794)
-			const host = import.meta.env.VITE_HOST;
-			console.log(host);
-
-			// const actor = await getActor(new AnonymousIdentity());
-
-			// Create an actor to interact with the IC for a particular canister ID
-			const actor = createActor(canisterId, { agentOptions: { host } });
-
-			// Call the IC
-			greeting = await actor.greet(input);
-		} catch (err: unknown) {
-			console.error(err);
-		}
-
-		disabled = false;
-	};
+	let whoami = '';
 </script>
 
+<h1>Welcome to SvelteKit</h1>
+<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+
 <main>
-	<img src="logo2.svg" alt="DFINITY logo" />
 	<br />
 	<br />
 
-	<form on:submit={handleOnSubmit}>
+	<form
+		on:submit={async () => {
+			greeting = await $authStore.actor.greet(input);
+		}}
+	>
 		<label for="name">Enter your name: &nbsp;</label>
 		<input id="name" alt="Name" type="text" bind:value={input} {disabled} />
 		<button type="submit">Click Me!</button>
@@ -48,14 +29,26 @@
 	<section id="greeting">
 		{greeting}
 	</section>
+
+	<br />
+	<br />
+
+	<section style="text-align: center;">
+		<Auth />
+		<button
+			on:click={async () => {
+				whoami = await $authStore.actor.whoami();
+			}}>Who ami</button
+		>
+		<p class="whoami-style">{whoami}</p>
+	</section>
 </main>
 
-<style lang="scss">
-	img {
-		max-width: 50vw;
-		max-height: 25vw;
-		display: block;
-		margin: auto;
+<style>
+	.whoami-style {
+		margin: 10px auto;
+		padding: 10px 60px;
+		border: 1px solid #e01717;
 	}
 
 	form {

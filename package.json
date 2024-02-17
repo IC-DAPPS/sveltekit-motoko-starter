@@ -3,13 +3,7 @@
 	"version": "0.0.1",
 	"private": true,
 	"description": "Internet Computer SvelteKit starter application",
-	"keywords": [
-		"Internet Computer",
-		"Motoko",
-		"JavaScript",
-		"Canister",
-		"SvelteKit"
-	],
+	"keywords": ["Internet Computer", "Motoko", "JavaScript", "Canister", "SvelteKit"],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -47,8 +41,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@dfinity/agent": "0.19.0",
-		"@dfinity/candid": "0.19.0",
-		"@dfinity/principal": "0.19.0"
+		"@dfinity/agent": "^1.0.0",
+		"@dfinity/auth-client": "^1.0.0"
 	}
 }

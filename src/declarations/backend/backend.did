@@ -1,3 +1,4 @@
 service : {
-  greet: (text) -> (text);
+  greet: (text) -> (text) query;
+  whoami: () -> (text) query;
 }

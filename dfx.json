@@ -5,12 +5,17 @@
 			"type": "motoko"
 		},
 		"frontend": {
-			"dependencies": ["backend"],
+			"dependencies": ["backend", "internet-identity"],
 			"frontend": {
 				"entrypoint": "build/index.html"
 			},
 			"source": ["build/"],
 			"type": "assets"
+		},
+		"internet-identity": {
+			"type": "pull",
+			"id": "rdmx6-jaaaa-aaaaa-aaadq-cai",
+			"frontend": {}
 		}
 	},
 	"defaults": {
