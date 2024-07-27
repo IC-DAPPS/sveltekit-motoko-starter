@@ -42,6 +42,9 @@
 		>
 		<p class="whoami-style">{whoami}</p>
 	</section>
+	<div class="flex-center">
+		<img src="/logo2.svg" alt="100% on chain" />
+	</div>
 </main>
 
 <style>
@@ -77,5 +80,10 @@
 
 	#greeting:empty {
 		display: none;
+	}
+	.flex-center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>
