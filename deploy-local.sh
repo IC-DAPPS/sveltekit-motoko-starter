@@ -1,12 +1,12 @@
 echo "Starting deployment process..."
 
 # Pull Internet Identity as a dependency from the mainnet and deploy locally
-# echo "Pulling and deploying Internet Identity..."
-# dfx deps pull
-# dfx deps init --argument '(null)' internet_identity
-# dfx deps deploy
+echo "Pulling and deploying Internet Identity..."
+dfx deps pull
+dfx deps init --argument '(null)' internet_identity
+dfx deps deploy
 
-dfx deploy internet_identity
+
 
 echo "Deploying backend..."
 dfx deploy backend
